@@ -22,7 +22,9 @@
         <td>{{$project->client_name}}</td>
         <td>{{$project->created_at}}</td>
         <td>{{$project->created_at}}</td>
-        <td>pulsanti</td>
+        <td>
+            <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View</a>
+        </td>
       </tr>
       @endforeach  
     </tbody>
