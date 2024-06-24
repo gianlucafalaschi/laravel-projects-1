@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Support\Str; // importo classe Str per ricavare slug
 
 class ProjectController extends Controller
 {
@@ -28,7 +29,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -39,7 +40,14 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formData = $request->all();
+        //creo nuova istanza di project
+        $newProject = new Project();
+        $newProject->slug = Str::slug($formData['name'], '-');
+        $newProject->fill($formData);
+        $newProject->save();
+
+        return redirect()->route('admin.projects.show', ['project' => $newProject->id]);
     }
 
     /**
