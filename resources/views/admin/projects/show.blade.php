@@ -27,5 +27,26 @@
         <strong>Updated at</strong>: {{ $project->updated_at }}
     </div>    
     
+    <div class="mt-4">
+        <h4>Action:</h4>
+
+        <div>
+            <a class="btn btn-primary " href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit</a>
+        </div>
+
+        <div class="mt-2">
+            <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')  
+                
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </div>
+
+    </div>
+
+    
+        
+    
     
 @endsection

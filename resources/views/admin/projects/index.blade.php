@@ -23,7 +23,23 @@
         <td>{{$project->created_at}}</td>
         <td>{{$project->created_at}}</td>
         <td>
+          <div>
             <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View</a>
+          </div>
+          
+          <div>
+            <a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}">Edit</a>
+          </div>
+
+          <div>
+            <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST">
+              @csrf
+              @method('DELETE')  
+              
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+          </div>
+        
         </td>
       </tr>
       @endforeach  
